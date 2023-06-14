@@ -41,7 +41,7 @@ public class StatsServiceTest {
     public void shouldMonthSalesUpperAverageSales() {
         StatsService service = new StatsService();
         long[] temps = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expectedSum = 10;
+        int expectedSum = 5;
         int actualSum = service.monthSalesUpperAverageSales(temps);
         Assertions.assertEquals(expectedSum, actualSum);
     }
@@ -50,7 +50,7 @@ public class StatsServiceTest {
     public void shouldMonthSalesLowerAverageSales() {
         StatsService service = new StatsService();
         long[] temps = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expectedSum = 2;
+        int expectedSum = 7;
         int actualSum = service.monthSalesLowerAverageSales(temps);
         Assertions.assertEquals(expectedSum, actualSum);
     }

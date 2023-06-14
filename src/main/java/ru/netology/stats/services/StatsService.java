@@ -12,16 +12,7 @@ public class StatsService {
 
         return minMonth + 1; // месяца нумеруются с 1, а индексы массива с 0, нужно сдвинуть ответ на 1
     }
-
-    public int sumSales(long[] sales) { // сумма всех продаж
-        int sumSale = 0; // сумма продаж по всем месяцам
-        for (int i = 0; i < sales.length; i++) {
-            sumSale = (int) (sales[i] + sumSale); // суммирование продаж текущего месяца и продаж предыдущих периодов
-
-        }
-        return sumSale; // сумма продаж всех месяцев
-    }
-
+    
     public int maxSales(long[] sales) { // номер месяца в котором были максимальные продажи
         int maxMonth = 0; // номер месяца с максимальными продажами среди просмотренных ранее
 
@@ -33,32 +24,29 @@ public class StatsService {
 
         return maxMonth + 1; // месяца нумеруются с 1, а индексы массива с 0, нужно сдвинуть ответ на 1
     }
+    public int sumSales(long[] sales) { // сумма всех продаж
+        int sumSale = 0; // сумма продаж по всем месяцам
+        for (int i = 0; i < sales.length; i++) {
+            sumSale = (int) (sales[i] + sumSale); // суммирование продаж текущего месяца и продаж предыдущих периодов
+
+        }
+        return sumSale; // сумма продаж всех месяцев
+    }
+
+
 
     public int averageSales(long[] sales) { // средняя сумма продаж в месяц;
-
-        int sumSale = 0;
-        int averageSale = 0; // средняя сумма продаж в месяц
-        int month;
-        for (month = 0; month < sales.length; month++) {
-            sumSale = (int) (sales[month] + sumSale);
-        }
-        averageSale = sumSale / month;
+        int averageSale = sumSales(sales) / sales.length;; // средняя сумма продаж в месяц
         return averageSale;
     }
 
     public int monthSalesUpperAverageSales(long[] sales) { // количество месяцев, в которых продажи были выше среднего;
 
-        int sumSale = 0;
-        int averageSale = 0; // средняя сумма продаж в месяц
-        int month;
+        int averageSale = averageSales(sales); // средняя сумма продаж в месяц
         int monthSaleUp = 0;
-        /*for (month = 0; month < sales.length; month++) {
-            sumSale = (int) (sales[month] + sumSale);
-        }
-        averageSale = sumSale / month;
-        */
+
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] > sales[averageSale]) { // значит, в рассматриваемом i-м месяце продаж меньше
+            if (sales[i] > averageSale) { // значит, в рассматриваемом i-м месяце продаж меньше
                 monthSaleUp = monthSaleUp + 1; // увеличиваем счетчик месяцев
             }
         }
@@ -67,17 +55,11 @@ public class StatsService {
 
     public int monthSalesLowerAverageSales(long[] sales) { // количество месяцев, в которых продажи были ниже среднего;
 
-        int sumSale = 0;
-        int averageSale = 0; // средняя сумма продаж в месяц
-        int month;
+        int averageSale = averageSales(sales); // средняя сумма продаж в месяц
         int monthSaleLow = 0;
-        /*for (month = 0; month < sales.length; month++) {
-            sumSale = (int) (sales[month] + sumSale);
-        }
-        averageSale = sumSale / month;
-        */
+
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] <= sales[averageSale]) { // значит, в рассматриваемом i-м месяце продаж меньше
+            if (sales[i] <= averageSale) { // значит, в рассматриваемом i-м месяце продаж меньше
                 monthSaleLow = 1 + monthSaleLow; // увеличиваем счетчик месяцев
             }
         }
